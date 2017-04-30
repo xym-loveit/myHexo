@@ -1,7 +1,7 @@
 ---
 title: Java多线程基础：进程和线程之由来
 date: 2017-04-28 17:32:45
-categories: java多线程
+categories: java多线程系列
 tags: [java多线程]
 ---
 
