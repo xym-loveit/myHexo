@@ -90,8 +90,8 @@ show_count: false
 ## Add comment count after article title
 
 disqus: 
-  #on: true
-  shortname: 
+  on: true
+  shortname: xym-loveit
   # https://help.disqus.com/customer/en/portal/articles/466208-what-s-a-shortname-
   # It is unnecessary to enable disqus here if 
   # you have set "disqus_shortname" in your site's "_config.yml" 
@@ -104,7 +104,7 @@ duoshuo:
   # http://<要填的部分>.duoshuo.com (domain只填上<>里的内容，不要填整个网址)
 
 youyan:
-  on: true
+  #on: true
   id: 
   # 是否开启友言评论，http://www.uyan.cc/index.php
   # id 中填写你的友言用户数字ID，注册后进入后台管理即可查看
@@ -183,11 +183,11 @@ tagcloud: true
 friends:
   Hexo: https://hexo.io
   GitHub: https://pages.github.com/
-  MOxFIVE: http://moxfive.xyz/
+  #MOxFIVE: http://moxfive.xyz/
 #friends: false
 
 #是否开启“关于我”。
-aboutme: 专注于前端
+aboutme: 一个行者
 #aboutme: false
 
 # Open link in a new tab | 是否在新窗口打开链接
