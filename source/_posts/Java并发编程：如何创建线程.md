@@ -1,7 +1,7 @@
 ---
 title: Java并发编程:如何创建线程
 date: 2017-04-30 15:47:34
-categories: java多线程系列
+categories: Java并发编程系列
 tags: [java多线程]
 description:  在Java中，一个应用程序对应着一个JVM实例（也有地方称为JVM进程），一般来说名字默认为java.exe或者javaw.exe（windows下可以通过任务管理器查看）。Java采用的是单线程编程模型，即在我们自己的程序中如果没有主动创建线程的话，只会创建一个线程，通常称为主线程。
 ---

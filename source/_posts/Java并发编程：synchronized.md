@@ -1,8 +1,8 @@
 ---
 title: Java并发编程：synchronized
 date: 2017-04-30 21:12:42
-categories: Java多线程系列
-tags: [java多线程]
+categories: Java并发编程系列
+tags: [java多线程,synchronized]
 description:  在Java中，可以使用synchronized关键字来标记一个方法或者代码块，当某个线程调用该对象的synchronized方法或者访问synchronized代码块时，这个线程便获得了该对象的锁，其他线程暂时无法访问这个方法，只有等待这个方法执行完毕或者代码块执行完毕，这个线程才会释放该对象的锁，其他线程才能执行这个方法或者代码块
 ---
 虽然多线程编程极大地提高了效率，但是也会带来一定的隐患。比如说两个线程同时往一个数据库表中插入不重复的数据，就可能会导致数据库中插入了相同的数据。今天我们就来一起讨论下线程安全问题，以及Java中提供了什么机制来解决线程安全问题。

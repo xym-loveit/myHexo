@@ -1,8 +1,8 @@
 ---
 title: Java并发编程：Lock
 date: 2017-04-30 22:03:57
-categories: Java多线程系列
-tags: [java多线程]
+categories: Java并发编程系列
+tags: [java多线程,Lock]
 description: Lock和synchronized有一点非常大的不同，采用synchronized不需要用户去手动释放锁，当synchronized方法或者synchronized代码块执行完之后，系统会自动让线程释放对锁的占用；而Lock则必须要用户去手动释放锁，如果没有主动释放锁，就有可能导致出现死锁现象
 ---
 在上一篇文章中我们讲到了如何使用关键字synchronized来实现同步访问。本文我们继续来探讨这个问题，从Java 5之后，在java.util.concurrent.locks包下提供了另外一种方式来实现同步访问，那就是Lock。

@@ -1,8 +1,8 @@
 ---
 title: Java并发编程：Thread类的使用
 date: 2017-04-30 18:10:51
-categories: [Java多线程系列]
-tags: [java多线程]
+categories: Java并发编程系列
+tags: [java多线程,Thread]
 description:  线程从创建到最终的消亡，要经历若干个状态。一般来说，线程包括以下这几个状态：创建(new)、就绪(runnable)、运行(running)、阻塞(blocked)、time waiting、waiting、消亡（dead）。
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Java并发编程：volatile关键字解析
 date: 2017-05-01 01:01:51
-categories: Java多线程系列
+categories: Java并发编程系列
 tags: [java多线程,volatile]
 description: volatile这个关键字可能很多朋友都听说过，或许也都用过。在Java 5之前，它是一个备受争议的关键字，因为在程序中使用它往往会导致出人意料的结果。在Java 5之后，volatile关键字才得以重获生机
 ---
