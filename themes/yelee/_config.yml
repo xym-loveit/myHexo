@@ -40,9 +40,9 @@ since: 2017
 ## https://github.com/hexojs/hexo-generator-feed
 
 subnav:
-  Email: "mailto:123@123.com"
+  Email: "mailto:xym-loveit@126.com"
   #新浪微博: "sina weibo"
-  GitHub: "#"
+  GitHub: "https://github.com/xym-loveit"
   #V2EX: "#"
   RSS: "/atom.xml"
   #知乎: "zhihu"
