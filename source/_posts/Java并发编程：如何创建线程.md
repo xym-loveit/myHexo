@@ -1,5 +1,5 @@
 ---
-title: page
+title: Java并发编程:如何创建线程
 date: 2017-04-30 15:47:34
 categories: java多线程系列
 tags: [java多线程]
