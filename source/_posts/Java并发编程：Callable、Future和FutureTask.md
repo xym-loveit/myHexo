@@ -75,6 +75,7 @@ description: 在前面的文章中我们讲述了创建线程的2种方式，一
 　　Future就是对于具体的Runnable或者Callable任务的执行结果进行取消、查询是否完成、获取结果。必要时可以通过get方法获取执行结果，该方法会阻塞直到任务返回结果。
 
 　　Future类位于java.util.concurrent包下，它是一个接口：  
+  
 	public interface Future<V> {
 		boolean cancel(boolean mayInterruptIfRunning);
 		boolean isCancelled();
