@@ -274,10 +274,15 @@ Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置�
 ##### 新建一个commit，用来撤销指定commit
 ##### 后者的所有变化都将被前者抵消，并且应用到当前分支
     $ git revert [commit]
-
+	
 ##### 暂时将未提交的变化移除，稍后再移入
     $ git stash
     $ git stash pop
+
+##### 放弃本地修改强制更新(git fetch 只是下载远程的库的内容，不做任何的合并 git reset 把HEAD指向刚刚下载的最新的版本)
+	$ git fetch --all
+	$ git reset --hard origin/master 
+
 ## 十、其他
 
 ##### 生成一个可供发布的压缩包
