@@ -98,6 +98,7 @@ description:  在Java中，一个应用程序对应着一个JVM实例（也有�
 
  　　运行结果：
 
+![线程调用运行结果](http://op7wplti1.bkt.clouddn.com/151004139364653.jpg)
 
 
 　　从输出结果可以得出以下结论：
