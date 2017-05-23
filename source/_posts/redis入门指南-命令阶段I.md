@@ -2,8 +2,8 @@
 title: redis入门指南-命令阶段I
 date: 2017-05-23 15:48:38
 categories: redis系列
-tags: [redis命令,redis五种数据类型,字符串（string）,散列表（hash）,列表（list）,集合（set）,有序集合（zset）]
-description: 了解了redis基础后，本章主要介绍redis五种数据类型及相应的命令。命令拾遗部分会对其他比较有用的命令进行补充介绍。
+tags: [redis命令,redis五种数据类型,字符串（string）,散列表（hash）]
+description: 了解了redis基础后，本章主要介绍redis字符串（string）、散列表（hash）数据类型及相应的命令。命令拾遗部分会对其他比较有用的命令进行补充介绍。
 ---
 ## 命令热身
 ### 1. 获得符合规则的键名列表  
