@@ -2,7 +2,7 @@
 title: Spring Cloud常见问题总结
 date: 2018-04-11 21:01:13
 categories: Spring-Cloud系列
-tags: [Spring-Cloud,SpringCloud常见问题,Spring Cloud 问题诊断,Spring Cloud 配置手册]
+tags: [Spring-Cloud,SpringCloud常见问题,Eureka 配置,Ribbon 配置,Hystrix 配置,Turbine 配置,Spring Cloud 配置手册]
 description: 在使用SpringCloud的过程中，可能会遇到一些问题。本文对常见问题做一些总结。
 ---
 
