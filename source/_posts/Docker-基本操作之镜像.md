@@ -19,8 +19,7 @@ Options:
 * 当仓库地址（registry，注册服务器）省略不写时，默认使用`docker hub`服务器，如果从非官方仓库下载，则需要在仓库名称前指定完整的镜像注册服务器地址（e.g. hub.c.163.com/library/）。
 
 ```
-//去网易蜂巢拉取镜像仓库
-
+//去网易蜂巢拉取镜像仓库  
 [root@xxx ~]# docker pull hub.c.163.com/library/memcached:latest 
 latest: Pulling from library/memcached
 810fd2d89f8f: Pull complete 
@@ -30,8 +29,8 @@ a6554c2d9f43: Pull complete
 40661d641679: Pull complete 
 Digest: sha256:537918e564521a6aa1d4da202e33af500ecfcb4ab9be78d5a6f222ef919b3ba9
 Status: Downloaded newer image for hub.c.163.com/library/memcached:latest
-
-``` 
+    
+```
 
 ## 列出镜像
 命令格式：`docker images [OPTIONS] [REPOSITORY[:TAG]]`
@@ -45,9 +44,7 @@ Options:
       --no-trunc        对输出结果中太长部分是否进行截断，如镜像ID信息，默认为是
   -q, --quiet           仅输出ID信息，默认为否
 
-```
-
-```
+---------------------------------------------------------------------------------------------------
 [root@xxx ~]# docker images
 REPOSITORY                        TAG                 IMAGE ID            CREATED             SIZE
 centos                            7                   0b99289e40ee        About an hour ago   435MB
