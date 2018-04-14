@@ -84,7 +84,7 @@ ubuntu                            14.04               a35e70164dfb        5 week
 hub.c.163.com/library/memcached   latest              8b057b9de580        7 months ago        58.6MB
 163ubuntu                         14.04               2fe5c4bba1f9        2 years ago         237MB
 hub.c.163.com/public/ubuntu       14.04               2fe5c4bba1f9        2 years ago         237MB
-[root@xym ~]# 
+[root@xxx ~]# 
 
 ```
 为了方便后续工作中使用特定镜像，还可以使用docker tag命令来为本地镜像任意添加新的标签。例如添加一个新的`163ubuntu:14.04`镜像标签。之后用户就可以直接使用`163ubuntu:14.04`来表示这个镜像了。观察`163ubuntu:14.04`的ID跟源镜像`hub.c.163.com/public/ubuntu:14.04`完全一致。他们实际上指向同一个镜像文件，只是别名不同而已。`docker tag`命令添加的标签实际上起到了类似连接的作用。
@@ -330,7 +330,7 @@ hub.c.163.com/public/ubuntu       14.04               2fe5c4bba1f9        2 year
 //通过镜像ID删除镜像，提示多个镜像引用此镜像ID，必须使用-f 参数强制删除
 [root@xxx ~]# docker rmi 8b057b9de580
 Error response from daemon: conflict: unable to delete 8b057b9de580 (must be forced) - image is referenced in multiple repositories
-[root@xym ~]# docker rmi -f 8b057b9de580
+[root@xxx ~]# docker rmi -f 8b057b9de580
 Untagged: 163mem:latest
 Untagged: hub.c.163.com/library/memcached:latest
 Untagged: hub.c.163.com/library/memcached@sha256:537918e564521a6aa1d4da202e33af500ecfcb4ab9be78d5a6f222ef919b3ba9
@@ -356,10 +356,10 @@ hub.c.163.com/public/ubuntu   14.04               2fe5c4bba1f9        2 years ag
 
 ```
 //使用镜像运行容器
-[root@xym ~]# docker run ubuntu:14.04 echo "Hello"
+[root@xxx ~]# docker run ubuntu:14.04 echo "Hello"
 Hello
 //查看所有状态容器
-[root@xym ~]# docker ps -a
+[root@xxx ~]# docker ps -a
 CONTAINER ID        IMAGE                               COMMAND                  CREATED             STATUS                     PORTS               NAMES
 8bdb6f330ec9        ubuntu:14.04                        "echo Hello"             7 seconds ago       Exited (0) 6 seconds ago                       determined_varahamihira
 
@@ -437,9 +437,9 @@ Options:
 
 例如：下载了`centos-7-x86_64-minimal.tar.gz`模板压缩包，之后使用以下命令导入：
 ```
-[root@xym ~]# cat centos-7-x86_64-minimal.tar.gz | docker import - centos-7:import
+[root@xxx ~]# cat centos-7-x86_64-minimal.tar.gz | docker import - centos-7:import
 sha256:be5e039acd03e1c3489841f6edd244954a4c1eb534de7fff605d807136b7e735
-[root@xym ~]# docker images
+[root@xxx ~]# docker images
 REPOSITORY                    TAG                 IMAGE ID            CREATED              SIZE
 centos-7                      import              be5e039acd03        About a minute ago   435MB
 xymtest                       0.1                 8a758d16a99b        18 minutes ago       113MB
@@ -487,7 +487,7 @@ Loaded image: 163ubuntu:14.04
 
 或者可以使用
 
-[root@xym ~]# docker load < 163ubuntu_14.04.tar 
+[root@xxx ~]# docker load < 163ubuntu_14.04.tar 
 Loaded image: 163ubuntu:14.04
 
 ```
