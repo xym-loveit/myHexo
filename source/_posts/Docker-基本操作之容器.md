@@ -100,11 +100,11 @@ d26cbeecf22d        registry.cn-hangzhou.aliyuncs.com/xym/163ubuntu:14.04   "/bi
 ```
 
 //创建容器并执行一个输出命令
-[root@xym /]# docker run ubuntu:latest /bin/echo "Hello World"
+[root@xxx /]# docker run ubuntu:latest /bin/echo "Hello World"
 Hello World
 
 //查看本地所有Docker容器，注意状态为Exited
-[root@xym /]# docker ps -a
+[root@xxx /]# docker ps -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                     PORTS               NAMES
 3fa47db4c105        ubuntu:latest       "/bin/echo 'Hello Wo…"   8 seconds ago       Exited (0) 7 seconds ago                       elated_goldwasser
 
@@ -194,11 +194,11 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 5d4cfe5b4b61        ubuntu:latest       "/bin/sh -c 'while t…"   16 minutes ago      Up 16 minutes                           thirsty_lewin
 
 //发送终止命令
-[root@xym ~]# docker stop 5d4c
+[root@xxx ~]# docker stop 5d4c
 5d4c
 
 //终止后状态为Exited
-[root@xym ~]# docker ps -a
+[root@xxx ~]# docker ps -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                        PORTS               NAMES
 5d4cfe5b4b61        ubuntu:latest       "/bin/sh -c 'while t…"   18 minutes ago      Exited (137) 56 seconds ago                       thirsty_lewin
 
@@ -281,7 +281,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 5d4cfe5b4b61        ubuntu:latest       "/bin/sh -c 'while t…"   About an hour ago   Up About a minute                       thirsty_lewin
 
 //使用exec进入后台运行的镜像中
-[root@xym ~]# docker exec -it thirsty_lewin /bin/bash
+[root@xxx ~]# docker exec -it thirsty_lewin /bin/bash
 root@5d4cfe5b4b61:/# 
 
 ```
@@ -361,7 +361,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 Error response from daemon: You cannot remove a running container 5d4cfe5b4b6109fd8df8717fcd87790e7692f70d7e8e8d7590ba4c269f6dd717. Stop the container before attempting removal or force remove
 
 //强制删除运行状态的容器
-[root@xym ~]# docker rm -f 5d4c
+[root@xxx ~]# docker rm -f 5d4c
 5d4c
 
 ```
@@ -388,7 +388,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 [root@xx ~]# docker export -o test_for_run.tar 684d
 
 //将已经退出的容器导出tar文件
-[root@xym ~]# docker export 3fa4 > test_for_stop.tar
+[root@xxx ~]# docker export 3fa4 > test_for_stop.tar
   
 ```
 
