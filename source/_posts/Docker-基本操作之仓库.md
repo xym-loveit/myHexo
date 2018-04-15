@@ -2,7 +2,7 @@
 title: Docker 基本操作之仓库
 date: 2018-04-15 15:43:29
 categories: Docker系列
-tags: [docker仓库,login命令,search命令,pull命令,本地搭建私有仓库配置，时速云镜像仓库]
+tags: [docker仓库,login命令,search命令,pull命令,本地搭建私有仓库配置,时速云镜像仓库]
 description: Docker入门指南，仓库概念及基本操作。
 ---
 仓库（Repository）是集中存放镜像的地方，分为公共仓库和私有仓库。一个容易与之混淆的概念是注册服务器（Registry）。实际上注册服务器是存放仓库的具体服务器，一个注册服务器上可以有多个仓库，而每个仓库下面可以有多个镜像。从这方面来说，可将仓库看做一个具体的项目或目录。例如对于仓库地址`private-docker.com/ubuntu`来说,`private-docker.com`是注册服务器地址，`ubuntu`是仓库名。
