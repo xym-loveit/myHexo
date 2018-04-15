@@ -10,7 +10,9 @@ description: Docker入门指南，容器各种操作命令。
 ## 创建容器
 
 ### 1、新建容器
+
 命令格式：`docker create [OPTIONS] IMAGE [COMMAND] [ARG...]`
+
 ```
 Options:
       --add-host list                  Add a custom host-to-IP mapping (host:ip)
@@ -40,6 +42,7 @@ Create命令与容器资源限制和安全保护相关选项如下图：
 ![Create命令与容器资源限制和安全保护相关选项2](http://op7wplti1.bkt.clouddn.com/1900654235_4b3x-i_epub.jpg)
 
 ```
+
 //根据镜像创建一个容器
 [root@xxx /]# docker create -it registry.cn-hangzhou.aliyuncs.com/xym/163ubuntu:14.04 
 d26cbeecf22d92fdff515a9bb8146521c8e4c6ea76cf7baab5abebb4b31dfc52
@@ -61,14 +64,18 @@ d26cbeecf22d        registry.cn-hangzhou.aliyuncs.com/xym/163ubuntu:14.04   "/bi
 ```
 其他比较重要的选项还包括：
 
--l，--label=[]：以键值对方式指定容器的标签信息；
+```
+-l，--label=[]：以键值对方式指定容器的标签信息;
 
 --label-file=[]：从文件读取标签信息。
+
+```
 
 ### 2、启动容器
 命令格式：`docker start [OPTIONS] CONTAINER [CONTAINER...]`
 
 ```
+
 //查看本地所有Docker容器，注意状态为Exited
 [root@xxx /]# docker ps -a
 CONTAINER ID        IMAGE                                                   COMMAND                  CREATED             STATUS                       PORTS               NAMES
@@ -84,10 +91,14 @@ CONTAINER ID        IMAGE                                                   COMM
 d26cbeecf22d        registry.cn-hangzhou.aliyuncs.com/xym/163ubuntu:14.04   "/bin/sh -c '/usr/sb…"   14 minutes ago      Up 2 seconds  
 
 ```
+
 ### 3、新建并启动容器
+
 除了创建容器后通过start命令来启动，也可以直接新建并启动容器。所需要的命令主要为`docker run`,等价于先执行`docker create`命令，再执行`docker start`命令。  
 例如，下面的命令输出一个“Hello World”，之后容器自动终止：
+
 ```
+
 //创建容器并执行一个输出命令
 [root@xym /]# docker run ubuntu:latest /bin/echo "Hello World"
 Hello World
@@ -100,6 +111,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 这跟在本地直接执行`/bin/echo "Hello World"`几乎感觉不出任何区别。当利用`docker run`来创建并启动容器时，Docker在后台运行的标准操作：  
+
 * 检查本地是否存在指定的镜像，不存在就从共有仓库下载；
 * 利用镜像创建容器，并启动该容器；
 * 分配一个文件系统给容器，并在只读的镜像层外面挂载一层可读写层；
@@ -109,6 +121,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 * 执行完毕后容器被自动终止
 
 启动一个终端，并允许用户进行交互：  
+
 ```
 
 //其中-t选项当Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，-i则让容器的标准输入保持打开。
@@ -144,6 +157,7 @@ exit
 ### 4、守护态运行
 
 更多的时候，需要让Docker容器在后台以守护态（Daemonized）形式运行。此时，可以通过添加-d参数来实现。
+
 ```
 
 //-d参数以后台模式启动Docker，返回容器id
@@ -196,6 +210,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 * 使用`docker restart`命令会将一个运行态的容器先终止，然后再重新启动
 
 ```
+
 //重新启动已终止的容器
 [root@xxx ~]# docker start 5d4c
 5d4c
@@ -224,6 +239,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 ```
 ## 进入容器
+
 在使用-d参数时，容器启动后会进入后台，用户无法看到容器中的信息，也无法操作。这个时候如果要进入容器进行操作，有三种方法：
 
 ### 1、使用attach命令
@@ -271,11 +287,11 @@ root@5d4cfe5b4b61:/#
 ```
 通过以上可以看出，一个bash终端被打开了，在不影响容器内其他应用的前提下，用户可以很容易与容器进行交互。
 
-注意：通过指定`-it`参数来保持标准输入打开，并且分配一个伪终端。**通过`exec`命令对容器执行操作是最为推荐的方式**。
+注意：通过指定`-it`参数来保持标准输入打开，并且分配一个伪终端。通过`exec`命令对容器执行操作是最为推荐的方式。
 
 ### 3、使用第三方`nsenter`工具
 
-在`util-linux`软件包版本2.23+中包含nsenter工具，如果系统中的`util-linux`包没有该命令，可以按照下面方式从源码安装：
+在`util-linux`软件包版本2.23+中包含`nsenter`工具，如果系统中的`util-linux`包没有该命令，可以按照下面方式从源码安装：
 
 ```
 
@@ -289,12 +305,18 @@ $ make nsenter && cp nsenter /usr/local/bin
 ```
 为了使用`nsenter` 连接到容器，还需要找到容器PID，可以通过下面的命令获取：
 
-`PID=$(docker inspect --format"{{.State.Pid}}" <container>)`
+```
 
-通过PID，连接到容器：
+//获取容器运行PID
+PID=$(docker inspect --format"{{.State.Pid}}" <container>)
+
+//通过PID，连接到容器：
 `nsenter --target $PID --mount --uts --ipc --net --pid`
 
+```
+
 下面使用完整的命令执行该操作：
+
 ```
 
 //查看运行容器
@@ -321,7 +343,9 @@ USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
 可以使用docker rm命令来删除处于终止或退出状态的容器。
 
 命令格式：`docker rm [OPTIONS] CONTAINER [CONTAINER...]`
+
 ```
+
 Options:
   -f, --force     强制终止并删除一个运行中的容器
   -l, --link      删除容器的连接但保留容器
@@ -394,42 +418,4 @@ centos-7                                          import              be5e039acd
 实际上，既可以使用`docker load`命令来导入镜像存储文件到本地镜像库，也可以使用`docker import`命令来导入一个容器快照到本地镜像库。
 
 这二者的区别在于容器快照文件将丢弃所有历史记录和元数据信息（即仅保存容器当时的快照状态），而镜像存储文件将保存完整记录，体积也更大。此外，从容器快照文件导入时可以重新指定标签。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
