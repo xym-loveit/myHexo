@@ -2,7 +2,7 @@
 title: Docker 端口映射与容器互联
 date: 2018-04-16 16:11:59
 categories: Docker系列
-tags: [docker容器端口映射,P/p命,link选项,容器互联原理]
+tags: [docker容器端口映射,Pp命,link选项,容器互联原理]
 description: Docker入门指南,端口映射和容器互联。
 ---
 
@@ -12,7 +12,7 @@ description: Docker入门指南,端口映射和容器互联。
 
 ### 1、从外部访问容器应用
 
-在启动容器的时候，如果不指定对应的参数，在容器外部是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些网络应用，要让外部访问这些应用时，可以通过-p或-P参数来指定端口映射。当使用-P（大写的）标记时，Docker会随机映射一个端口到内部容器开放的网络端口：
+在启动容器的时候，如果不指定对应的参数，在容器外部是无法通过网络来访问容器内的网络应用和服务的。当容器中运行一些网络应用，要让外部访问这些应用时，可以通过`-p`或`-P`参数来指定端口映射。当使用`-P`（大写的）标记时，Docker会随机映射一个端口到内部容器开放的网络端口：
 
 ```
 
@@ -20,18 +20,24 @@ description: Docker入门指南,端口映射和容器互联。
 f2c1a06b94b49de281b403fa339d5975be5dd6fae662c664b300540c851c3565
 
 //ps命令后发现本地主机的32783被映射到了容器的5000端口。访问宿主主机的32783端口即可访问容器内的web应用
-[root@xym ~]# docker ps -a
+[root@xxx ~]# docker ps -a
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                          PORTS                     NAMES
 f2c1a06b94b4        training/webapp     "python app.py"          3 seconds ago       Up 2 seconds                    0.0.0.0:32783->5000/tcp   inspiring_hawking
 
 //同样使用docker logs命令来查看应用信息
 [root@xxx ~]# docker logs -f  f2c
- * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 172.17.0.1 - - [14/Apr/2018 16:13:50] "GET / HTTP/1.1" 200 -
 
 ```
 
-`-p`（小写的）可以指定要映射的端口，并且，在一个指定端口上只可以绑定一个容器。支持的格式有：`IP:HostPort:ContainerPort|IP::ContainerPort|HostPort:ContainerPort`
+`-p`（小写的）可以指定要映射的端口，并且，在一个指定端口上只可以绑定一个容器。支持的格式有：
+
+```
+IP:HostPort:ContainerPort|IP::ContainerPort|HostPort:ContainerPort
+
+```
+
 
 ### 2、映射所有接口地址
 ```
@@ -70,8 +76,8 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ```
 
 ### 4、映射到指定地址的任意端口
-```
 
+```
 //使用IP::ContainerPort绑定localhost的任意端口到容器的5000端口，本地主机会自动分配一个端口
 [root@xxx ~]# docker run -d -p 127.0.0.1::5000 training/webapp python app.py
 ed9497ef017e2e90fac7e783c92ccde2f59c14f62d429190cb24c0dfa43eeefb
@@ -91,6 +97,7 @@ b5257d2e
 ``` 
 
 ### 5、查看映射端口配置
+
 使用`docker port`命令来查看当前映射的端口配置，也可以查看到绑定的地址： 
 ```
 
@@ -100,9 +107,11 @@ b5257d2e
 ```
 
 ## 互联机制实现便捷互访
+
 容器的互联（linking）是一种让多个容器中应用进行快速交互的方式。它会在源和接受容器之间创建连接关系，接受容器可以通过容器名快速访问到源容器，而不用指定具体的IP地址。
 
 ### 1、自定义容器命名
+
 连接系统依据容器名称来执行。因此，首先需要定义好一个好记的容器名字。虽然当创建容器的时候，系统默认会分配一个名字，但自定义容器名字有两个好处：
 
 * 自定义的名字比较好记，比如一个web应用容器，我们可以给它起个名字叫web ，一目了然。
@@ -119,8 +128,8 @@ b5257d2e
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
 757d2ee95be0        training/webapp     "python app.py"     5 seconds ago       Up 4 seconds        0.0.0.0:5000->5000/tcp   web
 
-//还可使用inspect --format "{{.Name}}"获取容器名字
-[root@xxx ~]# docker inspect --format "{{.Name}}" 757d2ee95be
+//还可使用inspect --format "{% raw %}{{.Name}}{% endraw %}"获取容器名字
+[root@xxx ~]# docker inspect --format "{% raw %}{{.Name}}{% endraw %}" 757d2ee95be
 /web
 
 ```
@@ -128,7 +137,9 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 在执行`docker run`的时候如果添加了`--rm`标记，则容器在终止后会立即删除。注意`--rm`和`-d`参数不能同时使用。
 
 ### 2、容器互联
+
 使用`--link`参数可以让容器之间安全地进行交互。
+
 ```
 //创建一个db容器
 [root@xxx ~]# docker run -d --name db training/postgres
@@ -162,12 +173,12 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 ca82ea2a2e5a        training/webapp     "python app.py"          22 seconds ago       Up 21 seconds       0.0.0.0:32784->5000/tcp   web
 3b48a3a82a86        training/postgres   "su postgres -c '/us…"   About a minute ago   Up About a minute   5432/tcp                  db
 
-//查看接受容器连接信息
-[root@xxx ~]# docaker inspect --format "{{.HostConfig.Links}}" web
+//查看接受容器(web)连接信息
+[root@xxx ~]# docaker inspect --format "{% raw %}{{.HostConfig.Links}}{% endraw %}" web
 [/db:/web/db]
 
 ```
-Docker相当于在两个互联的容器之间创建了一个虚机通道，而且不用映射他们的端口在宿主主机上。在启动db容器的时候并没有使用-p和-P标记，从而避免了暴露数据库服务端口到外部网路上。
+Docker相当于在两个互联的容器之间创建了一个虚机通道，而且不用映射他们的端口在宿主主机上。在启动db容器的时候并没有使用`-p`和`-P`标记，从而避免了暴露数据库服务端口到外部网路上。
 
 Docker通过两种方式为容器公开连接信息：
 
@@ -175,6 +186,7 @@ Docker通过两种方式为容器公开连接信息：
 * 更新`/etc/hosts`文件
 
 使用env命令来查看web容器的环境变量：
+
 ```
 
 [root@xxx ~]# docker run --rm --name web2 --link db:db training/webapp env
@@ -191,7 +203,7 @@ HOME=/root
 
 ```
 
-其中`DB_`开头的环境变量时提供web容器连接db容器使用的，前缀采用大写的连接别名。除了环境变量之外，Docker还添加host信息到子容器的`/etc/hosts`文件，下面是父容器web的hosts文件：
+其中`DB_`开头的环境变量时提供web容器连接db容器使用的，前缀采用大写的连接别名。除了环境变量之外，Docker还添加host信息到子容器的`/etc/hosts`文件，下面是子容器web的hosts文件：
 
 ```
 
@@ -206,12 +218,12 @@ root@d64fd0fa99f0:/opt/webapp# cat /etc/hosts
 //查看db容器，发现其将容器id作为主机名
 root@3b48a3a82a86:/# cat /etc/hosts
 127.0.0.1	localhost
-::1	localhost ip6-localhost ip6-loopback
 172.17.0.3	3b48a3a82a86
 
 ```
 
 这里有两个hosts信息，第一个是db容器的IP、主机名和容器id，第二个是web容器，web容器使用自己的id作为默认主机名。
+
 ```
 
 //安装ping命令
