@@ -74,15 +74,16 @@ feed:
   limit: 20
   hub:
 
-#baidu_url_submit:
-#  count: 100
-#  host: https://xym-loveit.github.io
-#  token: 9LsKRKuiml8lLlts
-#  path: baidusitemap.xml  # 文本文档的地址， 新链接会保存在此文本文档里
+baidu_url_submit:
+  count: 100
+  host: https://xym-loveit.github.io
+  token: 9LsKRKuiml8lLlts
+  path: baidusitemap.xml  # 文本文档的地址， 新链接会保存在此文本文档里
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+#  type: git
   repo: https://github.com/xym-loveit/xym-loveit.github.io.git
+  type: baidu_url_submitter
 
