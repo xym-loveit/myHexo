@@ -1,9 +1,9 @@
 ---
 title: Docker 数据管理
 date: 2018-04-15 19:04:53
-categories:
-tags:
-description:
+categories: Docker系列
+tags: [docker数据管理,-v选项,--volumes-from选项,数据卷备份,数据卷恢复]
+description: Docker入门指南，通过数据卷（-v参数）和数据卷容器（--volumes-from参数）来做数据管理（使用数据卷容器做数据卷的备份和恢复）。
 ---
 在生产环境中使用Docker过程中，往往需要对数据进行持久化，或者需要在多个容器之间进行数据共享，这必然涉及到容器的数据管理操作。
 
@@ -178,13 +178,26 @@ tar: Removing leading `/' from member names
 ```
 分析命令：  
 
-* 利用ubuntu镜像创建一个容器worker
-* 使用`--volumes-from dbdata`参数来让`worker`容器挂载`dbdata`容器的数据卷(即dbdata)
-* 使用 `-v $(pwd):/backup`参数来挂载本地的当前目录到`woker`容器的`/backup`目录
+* 利用ubuntu镜像创建一个容器worker。对应命令参数：`docker run --name worker ubuntu`
+* 使用`--volumes-from dbdata`参数来让`worker`容器挂载`dbdata`容器的数据卷(即dbdata)。对应命令参数：`--volumes-from dbdata`
+* 使用 `-v $(pwd):/backup`参数来挂载本地的当前目录到`woker`容器的`/backup`目录。对应命令参数：`-v $(pwd):/backup`
 * `worker`容器启动后，使用`tar -zcvf /backup/backup.tar /dbdata`命令来将`/dbdata`下内容备份为容器内的`/backup/backup.tar`,即宿主主机当前目录下的`backup.tar`。
 
 ### 2、恢复
+如果要将数据恢复到一个容器，可以按照下面步骤操作。首先创建一个带有数据卷的容器`dbdata2`。
 
+```
+docker run -v /dbdata --name dbdata2 ubuntu /bin/bash
+
+```
+
+然后创建另一个新的容器，挂载`dbdata2`的容器，并使用`untar`解压备份文件到所挂载的容器中：
+
+```
+
+docker run --volumes-from dbdata2 -v $(pwd):/backup busybox untar /backup/backup.tar
+ 
+```
 
 
 
