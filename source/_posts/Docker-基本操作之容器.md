@@ -308,7 +308,7 @@ $ make nsenter && cp nsenter /usr/local/bin
 ```
 
 //获取容器运行PID
-PID=$(docker inspect --format"{{.State.Pid}}" <container>)
+PID=$(docker inspect --format"{% raw %}{{.State.Pid}}{% endraw %}" <container>)
 
 //通过PID，连接到容器：
 `nsenter --target $PID --mount --uts --ipc --net --pid`
@@ -325,7 +325,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 5d4cfe5b4b61        ubuntu:latest       "/bin/sh -c 'while t…"   About an hour ago   Up 4 minutes                            thirsty_lewin
 
 //查看运行容器进程PID
-[root@xxx ~]# docker inspect --format "{{.State.Pid}}" thirsty_lewin
+[root@xxx ~]# docker inspect --format "{% raw %}{{.State.Pid}}{% endraw %}" thirsty_lewin
 18637
 
 //进入容器
