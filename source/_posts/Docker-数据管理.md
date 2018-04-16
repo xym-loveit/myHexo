@@ -70,7 +70,7 @@ e7816725b3d0        training/webapp     "python app.py"     21 seconds ago      
 1e0d2372472f8697a65c7da879a8807cf048bc4601b7136e354e4b0c87a7126f
 
 //查看运行的容器
-[root@xym webapp]# docker ps
+[root@xxx webapp]# docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
 1e0d2372472f        training/webapp     "python app.py"     4 seconds ago       Up 3 seconds        0.0.0.0:32781->5000/tcp   web
 
@@ -81,7 +81,7 @@ Docker挂载数据卷的默认权限是读写（rw），用户也可以通过`ro
 
 ```
 
-[root@xym ~]# docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp python app.py
+[root@xxx ~]# docker run -d -P --name web -v /src/webapp:/opt/webapp:ro training/webapp python app.py
 f5d7d04aa46c50db6696efa8554a9d344bbd3f13eb077be3c680a1ac89d509a0
 
 ```
@@ -168,12 +168,12 @@ drwxr-xr-x. 22 root root 4096 Apr 14 10:03 ../
 
 ```
 
-[root@xym ~]# docker run --volumes-from dbdata -v $(pwd):/backup --name worker ubuntu tar -zcvf /backup/backup.tar /dbdata
+[root@xxx ~]# docker run --volumes-from dbdata -v $(pwd):/backup --name worker ubuntu tar -zcvf /backup/backup.tar /dbdata
 tar: Removing leading `/' from member names
 /dbdata/
 /dbdata/a
 
-[root@xym ~]# 
+[root@xxx ~]# 
 
 ```
 分析命令：  
