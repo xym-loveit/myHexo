@@ -1,9 +1,9 @@
 ---
 title: Docker镜像构建文件Dockerfile及相关命令介绍
 date: 2018-04-19 15:22:20
-categories:
-tags:
-description:
+categories: Docker系列
+tags: [Dockerfile命令,Dockerfile命令详解,FROM命令,RUN命令,CMD命令,ADD命令,COPY命令,ENTRYPOINT命令,ENV命令,ONBUILD命令,ARG命令,WORKDIR命令，LABEL命令,EXPOSE命令,VOLUME命令,USER命令]
+description: Dockerfile命令详解，方便查阅。
 ---
 
 使用`docker build`命令或使用`Docker Hub`的自动构建功能构建Docker镜像时，都需要一个`Dockerfile`文件。`Dockerfile`文件是一个由一系列构建指令组成的文本文件，`docker build`命令会根据这些构建指令完成`Docker`镜像的构建。本文将会介绍`Dockerfile`文件，及其中使用的构建指令。
