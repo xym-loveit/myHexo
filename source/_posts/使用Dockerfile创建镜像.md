@@ -154,25 +154,31 @@ RUN pwd
 指定一些镜像内使用的的参数（例如版本号信息等），这些参数在执行`docker build`命令时以`--build-arg<varname>=<value>`格式传入。格式为`ARG <name>=[<default value>]`，则可以用`docker build --build-arg <name>=<value> .`来指定参数值。
 
 ### ONBUILD
+
 配置当所创建的镜像作为其他镜像的基础镜像时，所执行的创建操作指令。格式为：`ONBUILD [INSTRUCTION]`
 
 例如：Dockerfile使用了如下的内容创建了镜像`image-A`：
+
 ```
+
 [...]
 ONBUILD ADD . /app/src
 ONBUILD RUN /usr/local/bin/python-build --dir /app/src
 [...]
 
-``` 
+```
+
 如果基于`image-A`创建新的镜像时，新的Dockerfile中使用`FROM image-A`指定基础镜像，会自动执行`ONBUILD`指令的内容，等价于在后面添加了两条指令：
 
 ```
+
 FROM image-A
 #自动执行onbuild指定的命令
 ADD . /app/src
 RUN /usr/local/bin/python-build --dir /app/src
 
 ```
+
 使用`ONBUILD`指令的镜像，推荐在标签中注明，例如：`ruby:1.9-onbuild`
 
 ### STOPSIGNAL
@@ -214,7 +220,7 @@ docker build -t build_repo/first_image /tmp/docker_builder/
 ## 使用.dockerignore文件
 可以通过`.dockerignore`文件（每一行添加一条匹配模式）来让`Docker`忽略匹配模式路径下的目录和文件。例如：  
 ```
-# comment
+#comment
 */temp*
 */*/temp*
 tmp?
