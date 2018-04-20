@@ -1,9 +1,9 @@
 ---
 title: 使用Dockerfile创建镜像
 date: 2018-04-20 10:18:05
-categories:
-tags:
-description:
+categories: Docker系列
+tags: [Dockerfile命令]
+description: Dockerfile基础介绍。
 ---
 
 `Dockerfile`是一个文本格式的配置文件，用户可以使用`Dockerfile`来快速创建自定义的镜像。
