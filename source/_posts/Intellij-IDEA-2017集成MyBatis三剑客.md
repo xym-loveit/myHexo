@@ -2,7 +2,7 @@
 title: Intellij IDEA 2017集成MyBatis三剑客
 date: 2018-05-25 16:44:00
 categories: mybatis系列
-tags: [MyBatis-Generate,Mybatis-Plus,MyBatis-PageHelper]
+tags: [MyBatis-Generate, Mybatis Plus,MyBatis-PageHelper]
 description: Intellij IDEA 2017集成MyBatis三剑客（MyBatis-Generate、Mybatis Plus、MyBatis-PageHelper）
 ---
 
