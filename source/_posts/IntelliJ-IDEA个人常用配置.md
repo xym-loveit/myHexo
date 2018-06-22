@@ -121,6 +121,21 @@ description: 换电脑或者重装Idea后，个人常用配置
 ##  IntelliJ  IDEA JVM参数调优
 
 > <http://xxfox.perfma.com/jvm/generate> 
+个人电脑配置：win7+64位+8G内存+4核CPU:
+```
+
+-Xmx2688m
+-Xmx2688m
+-XX:ReservedCodeCacheSize=340m
+-XX:+UseConcMarkSweepGC
+-XX:SoftRefLRUPolicyMSPerMB=50
+-ea
+-Dsun.io.useCanonCaches=false
+-Djava.net.preferIPv4Stack=true
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:-OmitStackTraceInFastThrow
+
+```
 
 ## IntelliJ  IDEA  License  Server 
 
