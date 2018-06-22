@@ -130,3 +130,7 @@ description: 换电脑或者重装Idea后，个人常用配置
 
 > https://www.jetbrains.com/idea/docs/IntelliJIDEA_ReferenceCard.pdf 
 
+> 站在巨人的肩膀上 你会走的更远
+> 本教程部分内容引起以下网址
+> https://dancon.gitbooks.io/intellij-idea/content/this-tutorial-the-end.html 感谢原作者的辛勤付出
+
