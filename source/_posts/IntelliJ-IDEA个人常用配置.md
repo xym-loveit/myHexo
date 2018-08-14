@@ -116,6 +116,12 @@ description: 换电脑或者重装Idea后，个人常用配置
 
 11. #### Gsonformat
 
+12. #### Mongo Explorer
+
+13. #### ASM
+
+14. #### Generate Fluent Interface
+
 
 
 ##  IntelliJ  IDEA JVM参数调优
