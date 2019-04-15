@@ -90,7 +90,13 @@ description: 换电脑或者重装Idea后，个人常用配置
 - 如上图 Gif 所示，这是一个 Maven 多模块项目，在开发多模块的时候，经常会改到其他模块的代码，而模块与模块之间是相互依赖，如果不进行 install 就没办法使用到最新的依赖。
 - 所以，为了减少自己手动 install 的过程，可以把 install 过程放在项目启动之前，就像 Gif 所示那样。
 
+### 序列化接口提示自动生成serialVersionUID
 
+序列化的时候如果不指定`serialVersionUID`，那么实际上每次都要根据类的定义去计算一个UID，这个计算的结果很可能会受编译器的影响，容易导致UID的不一致，出现序列化/反序列化失败。
+不知为何 `IntelliJ` 默认没有增加这个 `Inspection` ，那我们加一下就好了。
+找到下面的路径：`File > Settings > Editor > Inspections`。首先把 `Profile` 设置成`Default IDE`，这样配置才能在所有项目中应用，否则就只在当前项目中应用。然后在`Java > Serialization issues`中，找到`Serializable class without 'serialVersionUID'`，并把校验勾上。
+增加了 `Inspections` 告警之后，就可以条件激活时，触发 `Intention` 的提示，这样就可以使用 `alt + enter` 直接自动生成UID了。
+话说回来，有一个叫`GenerateSerialVersionUID`的插件也是专门用来做这件事的，不过相比较之下还是直接改下配置更
 
  ##  常用插件
 
@@ -126,7 +132,7 @@ description: 换电脑或者重装Idea后，个人常用配置
 
 16. ### MyBatisCodeHelperPro
 
-
+17. ### IDE Features Trainer
 
 
 
